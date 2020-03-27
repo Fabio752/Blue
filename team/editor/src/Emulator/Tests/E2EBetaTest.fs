@@ -390,6 +390,77 @@ let testCasesBetaE2E : (string * string * Result<Ast, SharedTypes.ErrorT>) list 
                                 listItem 7 [\"a\", \"b\", \"c\", \"d\"]
                               ni",
     Ok  (Literal (IntLit 0));
+    "Simplified lexer",
+    "let listReverse lst = 
+        let reverser lst revlst  = 
+          if size lst == 0 
+          then revlst
+          else reverser (tail lst) (append (head lst) revlst)
+          fi
+        in
+          reverser lst []
+        ni
+      in
 
+      let listConcat lhs rhs = 
+              if size lhs == 0
+              then rhs
+              else append (head lhs) (listConcat (tail lhs) rhs)
+              fi
+            in
+
+      let listSplitAt idx lst = 
+              let splitter lhs rhs idx =
+                if size lhs == idx || size rhs == 0
+                then [lhs, rhs]
+                else splitter (append (head rhs) lhs) (tail rhs) idx
+                fi
+              in 
+              let halfReversed = splitter [] lst idx in
+                (\ a b. [a , b] ) (listReverse (head halfReversed)) (head (tail halfReversed))
+              ni ni
+            in
+
+
+    let stringAppend lhs rhs =
+        implode (listConcat (explode lhs) (explode rhs))
+    in
+
+    let matchId chars input =
+        if size input == 0 
+        then chars
+        else 
+            if ! ( strEq (head input) \" \")
+            then matchId (chars+1) (tail input)
+            else chars
+            fi
+        fi
+    in 
+
+    let lexer program lst = 
+        let headIs lst c =
+            strEq (head lst) c
+        in
+        let lexNgram input lst = 
+            if size input == 0
+            then lst 
+            else
+            if headIs input \" \" 
+            then lexNgram (tail input) lst
+            else
+                let chars = matchId 0 input in
+                let token = implode (head (listSplitAt chars input)) in
+                let rest = head (tail (listSplitAt chars input)) in
+                    append (stringAppend \"Id \" token) (lexNgram rest lst)
+                ni ni ni
+             fi fi 
+        in
+            lexNgram (explode program) lst
+        ni ni
+    in
+        lexer \"a b\" []
+    ni ni ni
+    ni ni ni",
+    Ok (SeqExp (Literal (StringLit "Id a"), SeqExp (Literal (StringLit "Id b"),SeqExp (Null,Null))));
 ]
   
