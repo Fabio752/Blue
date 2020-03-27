@@ -33,7 +33,7 @@ Prerequisites:
 
 ## Documentation and READMEs
 
-The language documentation can be found [here](README-team.md).  
+The language documentation can be found [here](team/README-team.md).  
 
 Individual READMEs are located in the `team` directory:
 - [fd5117](team/README-INDIV-fd5117.md)
