@@ -18,7 +18,7 @@ environment with the previous one).
 
 added trace to error reporting which (additionally to current Ast) provides a 
 better context for debugging. When error is encountered and returned the 
-appropriate functions add their 'part' to the trace.
+appropriate function is added to the trace stack.
 
 3. **more built-in support and change to list**
 
@@ -30,12 +30,13 @@ empty list needed to be changed which needed to be reflected in Beta Engine.
 
 The new features (from 3.) were tested.
 
+
 ### **Print** 
 
 I have implemented the print as a static class which contains a buffer. 
 This was the only non-functional part I have written which was challenging since 
-we have not discussed this part of F# much (other then from software engineering 
-standpoint).
+we have not discussed this part of F# much (other then from high-level principles 
+of software engineering standpoint).
 
 We have discussed other way of adding print which would be more functional and 
 monadic. However we decided that clutter from adding the print buffer to each of 
@@ -52,7 +53,7 @@ complier, but does not with Fable.
 We have decided that amount of work vs the reward would not be worth it after 
 trying to understand how Visual manages to open files.
 
-As all parts of our project it comes with unit tests.
+As all parts of our project it comes with some unit tests.
 
 I have written parts of the 'List' library namely `listMap` and `listSort` 
 function (implemented as merge sort algorithm). 
@@ -60,5 +61,8 @@ function (implemented as merge sort algorithm).
 
 ## **Group Dynamic and contributions**
 
-The team had a good balancing of the self-prescribed tasks. We have communicated regularly  and if some changes required the work of the whole team, for example adding print, all of us would work on their part - where changes to the Lexer, Parser and so on were made usually by the person who wrote them.
+The team had a good balancing of the self-prescribed tasks. We have communicated 
+regularly  and if some changes required the work of the whole team, for example
+adding print, all of us would work on their part - where changes to the Lexer,
+Parser and so on were made usually by the person who wrote them.
 
