@@ -402,7 +402,7 @@ The following features are supported by the SKI combinator runtime:
     - basic arithmetic and logical operators
 - ifThenElse expressions, only evaluating a branch if needed
 - Error reporting which indicates at which stage of the runtime an error occured
-- Recursion for functions with one argument (covered in INDIV-oss1017)
+- Recursion for functions with **one** argument (covered in INDIV-oss1017)
 
 
 ### Beta Engine

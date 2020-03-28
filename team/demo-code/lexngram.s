@@ -201,8 +201,13 @@ let lexer program lst =
 in
     # testing with listReduce declaration
     # lexer "let listReduce f lst = let reducer f acc lst = if size lst == 0 then acc else reducer f (f acc (head lst)) (tail lst) fi in if size lst == 0 then 0 else reducer f (head lst) (tail lst) fi ni in let sum a b = a + b in listReduce sum [120, 2, 3, 4] ni ni" []
-    # lexer "let " []
-    lexer "['a','b','c']" []
+    
+    # stringList test
+    # lexer "['a','b','c']" []
+
+    # factorial of 5
+    lexer "let fact n = if n <= 1 then 1 else fact (n-1) * n fi in fact 5 ni" []
+
 ni
 
 # Helper functions

@@ -19,7 +19,7 @@ The GUI can then be started anytime by running `Blue\Blue.exe`.
 Prerequisites:
 - Tar if using `setup.bat` (Packaged w/ Windows 10 from build 17063)  
 or  
-- Any method of extracting a zip file if following the manual extraction (7zip/WinRAR/...)
+- Any method of extracting a zip file if following the manual extraction (7zip/WinRAR/Tar...)
 
 
 **Alternative method:**  
